@@ -13,15 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Testing some large text"
+        android:id="@+id/textView"
         android:layout_below="@+id/section_label"
         android:layout_toRightOf="@+id/section_label"
         android:layout_toEndOf="@+id/section_label"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="80dp"
-        android:text="Testing stuff" />
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="36dp" />
 
 </RelativeLayout>
