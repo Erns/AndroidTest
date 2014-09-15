@@ -17,12 +17,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Testing some large text"
+        android:text="@string/text_string_1"
         android:id="@+id/textView"
         android:layout_below="@+id/section_label"
         android:layout_toRightOf="@+id/section_label"
         android:layout_toEndOf="@+id/section_label"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="36dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_1_text"
+        android:id="@+id/button_1"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:clickable="true"
+        android:onClick="TestClick" />
 
 </RelativeLayout>
