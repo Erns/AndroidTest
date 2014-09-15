@@ -11,4 +11,7 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
 
+    <string name="text_string_1">Testing some large text</string>
+    <string name="button_1_text">Test Button</string>
+
 </resources>
