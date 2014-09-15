@@ -116,13 +116,21 @@ public class MyActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    boolean bTesting = false;
     public void TestClick(View view){
 
         final TextView firstTextView = (TextView) findViewById(R.id.textView);
 
         //Button myButton = (Button) findViewById(R.id.button_1);
 
-        firstTextView.setText("Yay!");
+        if (bTesting) {
+            firstTextView.setText("Yay!");
+            bTesting = false;
+        }
+        else {
+            firstTextView.setText("Yay again!");
+            bTesting = true;
+        }
 
     }
 
