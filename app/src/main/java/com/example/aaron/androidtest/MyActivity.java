@@ -9,6 +9,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.print.PageRange;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,9 +20,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.view.View.*;
+import static com.example.aaron.androidtest.R.layout.activity_my;
+import static com.example.aaron.androidtest.R.layout.fragment_my;
 
 
 public class MyActivity extends Activity
@@ -34,12 +47,16 @@ public class MyActivity extends Activity
      */
     private CharSequence mTitle;
 
+    Activity active;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my);
 
-
+        active = MyActivity.this;
 
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -52,6 +69,8 @@ public class MyActivity extends Activity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
+
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -125,10 +144,12 @@ public class MyActivity extends Activity
 
         if (bTesting) {
             firstTextView.setText("Yay!");
+            Toast.makeText(MyActivity.this, "Toast Test Long", Toast.LENGTH_LONG).show();
             bTesting = false;
         }
         else {
             firstTextView.setText("Yay again!");
+            Toast.makeText(MyActivity.this, "Toast Test Short", Toast.LENGTH_SHORT).show();
             bTesting = true;
         }
 
@@ -162,7 +183,35 @@ public class MyActivity extends Activity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_my, container, false);
+            View rootView = inflater.inflate(fragment_my, container, false);
+
+
+            String[] testListView = {"Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7", "Test8", "Test9"};
+
+            //ListAdapter theAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, testListView);
+
+            //ListAdapter theAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.row_layout, R.id.textView1, testListView);
+
+            ListAdapter theAdapter = new MyAdapter(this.getActivity(), testListView);
+
+
+            ListView theListView = (ListView) rootView.findViewById(R.id.theListView);
+
+            theListView.setAdapter(theAdapter);
+
+            theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String stringPicked = "You selected " + String.valueOf(adapterView.getItemAtPosition(i));
+
+
+                    Toast.makeText(getActivity(), stringPicked, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+
             return rootView;
         }
 
